@@ -129,6 +129,7 @@ alias pip='python -m pip'
 alias vim='nvim'
 alias venv='python -m venv'
 alias git-dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias git-df='git-dotfiles'
 # -----------------------------------------------------
 : '
 # >>> conda initialize >>>

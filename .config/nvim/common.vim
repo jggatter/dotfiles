@@ -22,6 +22,7 @@ set fileformats=unix,mac,dos    " Handle all line endings, but prefer unix.
 " UI
 set title                       " Sets the title of the window.
 set number                      " Show line numbers.
+set relativenumber              " with relative line numbers for hybrid relative + absolute current line
 set showcmd                     " Show the executed command in the bottom bar.
 set wildmenu                    " Visual autocomplete for command menu
 "set wildmode=list:longest
