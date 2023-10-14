@@ -124,26 +124,20 @@ export PATH="$PATH:$HOME/.local/bin"  # pip3.11 was installed here
 alias python='/usr/bin/python3.11'
 alias python3.10="unalias python 2>/dev/null"
 alias python3.11="alias python='/usr/bin/python3.11'"
-#alias pip='pip3.11'
 alias pip='python -m pip'
-alias vim='nvim'
 alias venv='python -m venv'
+
+alias vim='nvim'
+export EDITOR=vim
+bindkey -v
+
 alias git-dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias git-df='git-dotfiles'
 # -----------------------------------------------------
-: '
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/jgatter/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/jgatter/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/jgatter/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/jgatter/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-'
+
+# bun completions
+[ -s "/home/jgatter/.bun/_bun" ] && source "/home/jgatter/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
