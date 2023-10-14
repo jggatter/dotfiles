@@ -112,5 +112,26 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="/usr/local/opt/node@12/bin:$PATH"
 
-alias vim='nvim'
+# -------------------- MY SETTINGS --------------------
+export PATH="$PATH:$HOME/.local/bin"  # pip3.11 was installed here
+
+alias python='/usr/bin/python3.11'
+alias python3.10="unalias python 2>/dev/null"
+alias python3.11="alias python='/usr/bin/python3.11'"
 alias pip='python -m pip'
+alias venv='python -m venv'
+
+alias vim='nvim'
+export EDITOR=vim
+bindkey -v
+
+alias git-dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias git-df='git-dotfiles'
+# -----------------------------------------------------
+
+# bun completions
+[ -s "/home/jgatter/.bun/_bun" ] && source "/home/jgatter/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
