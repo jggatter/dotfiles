@@ -6,4 +6,5 @@
 !.gitignore
 !.zshrc
 !.profile
-!.config/nvim
+!.config/
+!.config/nvim/
