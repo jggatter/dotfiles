@@ -6,4 +6,7 @@
 !.gitignore
 !.zshrc
 !.profile
-!.config/nvim
+!.config/
+!.config/nvim/
+!.config/nvim/**
+.config/nvim/lazy-lock.json
