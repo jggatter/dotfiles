@@ -134,6 +134,7 @@ bindkey -v
 
 alias git-dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias git-df='git-dotfiles'
+alias gdf='git-dotfiles'
 # -----------------------------------------------------
 
 # bun completions
