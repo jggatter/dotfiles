@@ -1,0 +1,9 @@
+# Ignore all by default:
+*
+
+# Permit list:
+!README.md
+!.gitignore
+!.zshrc
+!.profile
+!.config/nvim

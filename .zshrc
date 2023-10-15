@@ -1,5 +1,3 @@
-#-------------------- ZSHRC -------------------
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -112,11 +110,14 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# NVM (Node version manager)
+# NVM (Node Version Manager)
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] \
   && printf %s "${HOME}/.nvm" \
   || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# Node
+[[ -d "/usr/local/opt/node@12" ]] \
+  && export PATH="/usr/local/opt/node@12/bin:$PATH"
 
 # -------------------- MY SETTINGS --------------------
 export PATH="$PATH:$HOME/.local/bin"  # pip3.11 was installed here
@@ -133,10 +134,11 @@ bindkey -v
 
 alias git-dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias git-df='git-dotfiles'
+alias gdf='git-dotfiles'
 # -----------------------------------------------------
 
 # bun completions
-[ -s "/home/jgatter/.bun/_bun" ] && source "/home/jgatter/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
