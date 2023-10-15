@@ -1,5 +1,13 @@
+-- Spacebar is mapleader
 vim.g.mapleader = " "
+
+-- Explorer
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+
+-- Cycle colorscheme
+vim.keymap.set("n", "<leader>c", function()
+    vim.cmd("lua cycleColor()")
+end)
 
 -- Move selected text with auto-indent
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")

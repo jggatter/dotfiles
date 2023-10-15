@@ -46,9 +46,11 @@ require('lazy').setup({
 	  'rafamadriz/friendly-snippets',
     }
   },
-  {
-    'rose-pine/neovim',
-	name = 'rose-pine',
-  }
+  -- Colorschemes
+  {'rose-pine/neovim', name = 'rose-pine'},
+  {'folke/tokyonight.nvim', lazy = false, priority = 1000},
+  {'ellisonleao/gruvbox.nvim', priority = 1000, config = true},
+  {'shaunsingh/nord.nvim'},
+  {'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
 })
 
