@@ -110,7 +110,12 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export PATH="/usr/local/opt/node@12/bin:$PATH"
+# NVM (Node Version Manager)
+export NVM_dir="$([ -z "${XDG_CONFIG_HOME-}" ] \
+  && printf %s "${HOME}/.nvm" \
+  || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[[ -d "/usr/local/opt/node@12" ]] && export PATH="/usr/local/opt/node@12/bin:$PATH"
 
 # -------------------- MY SETTINGS --------------------
 export PATH="$PATH:$HOME/.local/bin"  # pip3.11 was installed here
@@ -130,7 +135,7 @@ alias git-df='git-dotfiles'
 # -----------------------------------------------------
 
 # bun completions
-[ -s "/home/jgatter/.bun/_bun" ] && source "/home/jgatter/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
