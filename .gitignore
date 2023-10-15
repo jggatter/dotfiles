@@ -8,3 +8,4 @@
 !.profile
 !.config/
 !.config/nvim/
+!.config/nvim/**
