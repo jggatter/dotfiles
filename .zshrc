@@ -111,11 +111,13 @@ source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # NVM (Node Version Manager)
-export NVM_dir="$([ -z "${XDG_CONFIG_HOME-}" ] \
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] \
   && printf %s "${HOME}/.nvm" \
   || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-[[ -d "/usr/local/opt/node@12" ]] && export PATH="/usr/local/opt/node@12/bin:$PATH"
+# Node
+[[ -d "/usr/local/opt/node@12" ]] \
+  && export PATH="/usr/local/opt/node@12/bin:$PATH"
 
 # -------------------- MY SETTINGS --------------------
 export PATH="$PATH:$HOME/.local/bin"  # pip3.11 was installed here
