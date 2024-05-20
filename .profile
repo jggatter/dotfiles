@@ -1,3 +1,3 @@
 . "$HOME/.cargo/env"
-export PATH="$PATH:/usr/local/opt/go/bin"
+export PATH="$PATH:/usr/local/go/bin"
 

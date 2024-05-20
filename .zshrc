@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$PATH:$HOME/.local/bin"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -77,11 +77,11 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git direnv)
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+### User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -98,48 +98,47 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias python='python3'
+alias pip='python -m pip'
+alias venv='python -m venv'
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+alias vim='nvim'
+export EDITOR=vim
+alias zshrc="$EDITOR ~/.zshrc"
+alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
+
+alias git-dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias git-df='git-dotfiles'
+alias gdf='git-dotfiles'
+
+# Shell options
+bindkey -v  # Vi motions
+bindkey '^R' history-incremental-search-backward  # reverse search
+
+### Application configurations
 
 # NVM (Node Version Manager)
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] \
   && printf %s "${HOME}/.nvm" \
   || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-# Node
-[[ -d "/usr/local/opt/node@12" ]] \
-  && export PATH="/usr/local/opt/node@12/bin:$PATH"
-
-# -------------------- MY SETTINGS --------------------
-export PATH="$PATH:$HOME/.local/bin"  # pip3.11 was installed here
-
-alias python='/usr/bin/python3.11'
-alias python3.10="unalias python 2>/dev/null"
-alias python3.11="alias python='/usr/bin/python3.11'"
-alias pip='python -m pip'
-alias venv='python -m venv'
-
-alias vim='nvim'
-export EDITOR=vim
-bindkey -v
-
-alias git-dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias git-df='git-dotfiles'
-alias gdf='git-dotfiles'
-# -----------------------------------------------------
-
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+if [ -d "$HOME/.bun" ]; then
+  # completions
+  [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+ 
+  export BUN_INSTALL="$HOME/.bun"
+  export PATH="$BUN_INSTALL/bin:$PATH"
+fi
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
