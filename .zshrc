@@ -1,3 +1,6 @@
+# Brew
+export PATH="$PATH:/opt/homebrew/bin"
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -6,7 +9,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-export PATH="$PATH:$HOME/.local/bin"
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -77,11 +80,18 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git direnv)
+plugins=(
+    aws
+    colored-man-pages
+    docker
+    gh
+    macos
+    python
+)
 
 source $ZSH/oh-my-zsh.sh
 
-### User configuration
+# User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -89,56 +99,87 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+#if [[ -n $SSH_CONNECTION ]]; then
+#    export EDITOR='nvim'
+#  else
+#    export EDITOR='nvim'
+#fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+export EDITOR='nvim'
+#export PAGER='less -s -M +Gg'
+export MANPAGER=$PAGER
+# Use Pygments to provide syntax highlighting for the less pager
+#export LESSOPEN='|pygmentize -g %s'
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-alias python='python3'
-alias pip='python -m pip'
-alias venv='python -m venv'
-
-alias vim='nvim'
-export EDITOR=vim
+#
+# Shell
 alias zshrc="$EDITOR ~/.zshrc"
 alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
-alias nvimconfig="$EDITOR ~/.config/nvim"
+alias als='als | $PAGER'
+alias git-df='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias gdf='git-df'
 
-alias git-dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias git-df='git-dotfiles'
-alias gdf='git-dotfiles'
+## Python
+alias python='python3'
+alias venv='python -m venv'
+alias pip='python -m pip'
 
-# Shell options
-bindkey -v  # Vi motions
-bindkey '^R' history-incremental-search-backward  # reverse search
+## Alternative CLI tools
+alias vim='nvim'
+alias ls='lsd'
+alias grep='rg'
+alias top='htop'
 
-### Application configurations
-
-# NVM (Node Version Manager)
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] \
-  && printf %s "${HOME}/.nvm" \
-  || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-# bun
-if [ -d "$HOME/.bun" ]; then
-  # completions
-  [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
- 
-  export BUN_INSTALL="$HOME/.bun"
-  export PATH="$BUN_INSTALL/bin:$PATH"
+if [[ "$(uname)" == "Darwin" ]]; then
+    alias sed='gsed'  # brew install gnu-sed
+    alias awk='gawk'  # brew install gnu-awk
 fi
 
-# fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+## AWS CLI
+alias gimme='gimme-aws-creds --open-browser'
+alias connect='ssh -i $EC2_PEM ubuntu@$EC2_IP'
+alias stop='aws --profile $EC2_PROFILE ec2 stop-instances --instance-ids $EC2_ID --no-cli-pager'
+alias start='aws --profile $EC2_PROFILE ec2 start-instances --instance-ids $EC2_ID --no-cli-pager'
+alias status='aws --profile $EC2_PROFILE ec2 describe-instance-status --instance-ids $EC2_ID --no-cli-pager'
+alias modify-type='aws --profile $EC2_PROFILE ec2 modify-instance-attribute --instance-id $EC2_ID --no-cli-pager --instance-type'
+alias yeet='scp -i ~/.ssh/jgatter.pem ~/.aws/credentials "ubuntu@10.50.84.35:~/.aws/credentials"'
+
+#alias assume-cyflows='eval $(aws sts assume-role --role-arn arn:aws:iam::840419303237:role/cyflows_ecs_task_role --role-session-name testingsess --query 'Credentials.[AccessKeyId, SecretAccessKey, SessionToken]' --output text | awk '{ print "export AWS_ACCESS_KEY_ID=\"" $1 "\"\n" "export AWS_SECRET_ACCESS_KEY=\"" $2 "\"\n" "export AWS_SESSION_TOKEN=\"" $3 "\"" }')'
+#alias assume-saturn='eval $(aws sts assume-role --role-arn arn:aws:iam::840419303237:role/saturn-role-data-science --role-session-name testingsess --query 'Credentials.[AccessKeyId, SecretAccessKey, SessionToken]' --output text | awk '{ print "export AWS_ACCESS_KEY_ID=\"" $1 "\"\n" "export AWS_SECRET_ACCESS_KEY=\"" $2 "\"\n" "export AWS_SESSION_TOKEN=\"" $3 "\"" }')'i
+alias unassume='unset AWS_ACCESS_KEY_ID; unset AWS_SECRET_ACCESS_KEY; unset AWS_SESSION_TOKEN'
+
+# Utilities
+alias urlencode='python3 -c "import sys, urllib.parse; print(urllib.parse.quote(sys.argv[1]))"'
+
+# Powerlevel 10k
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Node Version Manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# pnpm
+export PNPM_HOME="/Users/jgatter/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# Fuzzy find
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(fzf --zsh)"
+
+# direnv
+eval "$(direnv hook zsh)"
+
+# Shell options
+bindkey -v
