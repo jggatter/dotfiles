@@ -26,7 +26,7 @@ require('lazy').setup({
   {'tpope/vim-fugitive'},
   {
     'VonHeikemen/lsp-zero.nvim',
-    version = 'v2.x',
+    version = 'v3.x',
 	dependencies = {
 	  -- LSP Support
 	  'neovim/nvim-lspconfig',
@@ -42,8 +42,8 @@ require('lazy').setup({
       'hrsh7th/cmp-nvim-lua',
 
 	   -- Snippets
-	  'L3MON4D3/LuaSnip',
-	  'rafamadriz/friendly-snippets',
+	  --'L3MON4D3/LuaSnip',
+	  --'rafamadriz/friendly-snippets',
     }
   },
   {
@@ -65,16 +65,17 @@ require('lazy').setup({
         workspaces = {
           {
             name = "personal",
-            path = "~/Notes",
+            path = vim.fn.expand "~" .. "/Notes",
           },
         },
       },
   },
   -- Colorschemes
   {'rose-pine/neovim', name = 'rose-pine'},
-  {'folke/tokyonight.nvim', lazy = false, priority = 1000},
-  {'ellisonleao/gruvbox.nvim', priority = 1000, config = true},
-  {'shaunsingh/nord.nvim'},
+  --{'folke/tokyonight.nvim', lazy = false, priority = 1000},
+  --{'ellisonleao/gruvbox.nvim', priority = 1000, config = true},
+  --{'shaunsingh/nord.nvim'},
   {'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
+  {'Mofiqul/vscode.nvim'},
 })
 

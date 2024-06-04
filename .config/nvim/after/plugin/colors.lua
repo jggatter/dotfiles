@@ -3,7 +3,7 @@ require('rose-pine').setup({
 	variant = 'main',
 })
 
-local colorDefault = 'rose-pine'
+local colorDefault = 'rose-pine-moon' --- 'catpuccin-machiatto'
 
 local iColor
 local colors = vim.fn.getcompletion('', 'color')
@@ -11,6 +11,7 @@ local colorsLength = 0
 for i, color in pairs(colors) do
     if color == colorDefault then
         iColor = i
+        break
     end
     colorsLength = colorsLength + 1 
 end
