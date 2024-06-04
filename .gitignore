@@ -9,4 +9,4 @@
 !.config/
 !.config/nvim/
 !.config/nvim/**
-.config/nvim/lazy-lock.json
+.config/nvim/**/.DS_Store
