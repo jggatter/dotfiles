@@ -1,5 +1,7 @@
-# Brew
-export PATH="$PATH:/opt/homebrew/bin"
+# Path
+if [[ "$(uname)" == "Darwin" ]]; then
+  export PATH="$PATH:/opt/homebrew/bin"
+fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -7,9 +9,6 @@ export PATH="$PATH:/opt/homebrew/bin"
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -122,7 +121,8 @@ export MANPAGER=$PAGER
 # Shell
 alias zshrc="$EDITOR ~/.zshrc"
 alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
-alias als='als | $PAGER'
+alias aliases="alias | $PAGER"
+alias als='aliases'
 alias git-df='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias gdf='git-df'
 
@@ -143,16 +143,15 @@ if [[ "$(uname)" == "Darwin" ]]; then
 fi
 
 ## AWS CLI
+# Variables are stored in .zshenv
 alias gimme='gimme-aws-creds --open-browser'
 alias connect='ssh -i $EC2_PEM ubuntu@$EC2_IP'
 alias stop='aws --profile $EC2_PROFILE ec2 stop-instances --instance-ids $EC2_ID --no-cli-pager'
 alias start='aws --profile $EC2_PROFILE ec2 start-instances --instance-ids $EC2_ID --no-cli-pager'
 alias status='aws --profile $EC2_PROFILE ec2 describe-instance-status --instance-ids $EC2_ID --no-cli-pager'
 alias modify-type='aws --profile $EC2_PROFILE ec2 modify-instance-attribute --instance-id $EC2_ID --no-cli-pager --instance-type'
-alias yeet='scp -i ~/.ssh/jgatter.pem ~/.aws/credentials "ubuntu@10.50.84.35:~/.aws/credentials"'
+alias yeet='scp -i $EC2_PEM ~/.aws/credentials "ubuntu@${EC2_IP}:~/.aws/credentials"'
 
-#alias assume-cyflows='eval $(aws sts assume-role --role-arn arn:aws:iam::840419303237:role/cyflows_ecs_task_role --role-session-name testingsess --query 'Credentials.[AccessKeyId, SecretAccessKey, SessionToken]' --output text | awk '{ print "export AWS_ACCESS_KEY_ID=\"" $1 "\"\n" "export AWS_SECRET_ACCESS_KEY=\"" $2 "\"\n" "export AWS_SESSION_TOKEN=\"" $3 "\"" }')'
-#alias assume-saturn='eval $(aws sts assume-role --role-arn arn:aws:iam::840419303237:role/saturn-role-data-science --role-session-name testingsess --query 'Credentials.[AccessKeyId, SecretAccessKey, SessionToken]' --output text | awk '{ print "export AWS_ACCESS_KEY_ID=\"" $1 "\"\n" "export AWS_SECRET_ACCESS_KEY=\"" $2 "\"\n" "export AWS_SESSION_TOKEN=\"" $3 "\"" }')'i
 alias unassume='unset AWS_ACCESS_KEY_ID; unset AWS_SECRET_ACCESS_KEY; unset AWS_SESSION_TOKEN'
 
 # Utilities
