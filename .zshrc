@@ -153,6 +153,7 @@ alias stop='aws --profile $EC2_PROFILE ec2 stop-instances --instance-ids $EC2_ID
 alias start='aws --profile $EC2_PROFILE ec2 start-instances --instance-ids $EC2_ID --no-cli-pager'
 alias status='aws --profile $EC2_PROFILE ec2 describe-instance-status --instance-ids $EC2_ID --no-cli-pager'
 alias modify-type='aws --profile $EC2_PROFILE ec2 modify-instance-attribute --instance-id $EC2_ID --no-cli-pager --instance-type'
+alias describe-type='aws --profile $EC2_PROFILE ec2 describe-instance-attribute --instance-id $EC2_ID --attribute instanceType --no-cli-pager'
 alias yeet='scp -i $EC2_PEM ~/.aws/credentials "ubuntu@${EC2_IP}:~/.aws/credentials"'
 
 alias unassume='unset AWS_ACCESS_KEY_ID; unset AWS_SECRET_ACCESS_KEY; unset AWS_SESSION_TOKEN'
