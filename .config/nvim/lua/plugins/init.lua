@@ -24,9 +24,9 @@ return {
   -- },
   {
     "nvimtools/none-ls.nvim",
-    ft = {"python"},
+    ft = { "python", "go" },
     opts = function()
-      return require("lua.configs.none_ls")
+      return require "lua.configs.none_ls"
     end,
   },
   -- Mason installs external dependencies to Neovim

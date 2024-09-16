@@ -4,7 +4,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
 else
   export PATH="$PATH:$HOME/.local/bin"
 fi
-
+export PATH="$PATH:$HOME/go/bin"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
