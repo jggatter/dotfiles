@@ -14,4 +14,6 @@ M.base46 = {
 	-- },
 }
 
+M.mason = require 'configs.mason'
+
 return M

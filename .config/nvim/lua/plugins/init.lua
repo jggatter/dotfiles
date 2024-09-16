@@ -32,19 +32,5 @@ return {
   -- Mason installs external dependencies to Neovim
   {
   	"williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        -- Lua
-        "lua-language-server",
-        "stylua",
-
-        -- Web Development
-        -- "html-lsp", "css-lsp" , "prettier"
-
-        -- Python
-        "ruff",
-        "mypy",
-  	  },
-    },
   },
 }
