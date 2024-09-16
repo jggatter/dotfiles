@@ -1,11 +1,10 @@
 return {
-  {
-    "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
-    opts = require "configs.conform",
-  },
-
-  -- These are some examples, uncomment them if you want to see them work!
+  -- Improved formatting. This and nvim-lint are alternative to none-ls
+  -- {
+  --   "stevearc/conform.nvim",
+  --   -- event = 'BufWritePre', -- uncomment for format on save
+  --   opts = require "configs.conform",
+  -- },
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -22,7 +21,7 @@ return {
       },
     },
   },
-  -- null-ls integrates LSP-related sources
+  -- none-ls fka null-ls integrates LSP-related sources
   {
     "nvimtools/none-ls.nvim",
     ft = { "python", "go" },

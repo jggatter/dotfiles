@@ -3,6 +3,10 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 local opts = {
   sources = {
+    -- Lua
+    none_ls.builtins.formatting.stylua,
+
+    -- Python
     none_ls.builtins.diagnostics.mypy.with({
       extra_args = function()
         local virtual = os.getenv("VIRTUAL_ENV") or os.getenv("CONDA_PREFIX") or "/usr"
