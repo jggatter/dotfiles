@@ -12,16 +12,17 @@ return {
       require "configs.lspconfig"
     end,
   },
-
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+  -- Integration of tree-sitter parsing tool for highlighting
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "vim", "lua", "vimdoc",
+        "html", "css", "python", "go",
+      },
+    },
+  },
+  -- null-ls integrates LSP-related sources
   {
     "nvimtools/none-ls.nvim",
     ft = { "python", "go" },
