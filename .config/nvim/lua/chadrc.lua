@@ -14,6 +14,13 @@ M.base46 = {
 	-- },
 }
 
+M.ui = {
+  statusline = {
+    -- theme = "minimal" -- Shows ruler
+    theme = "vscode_colored"
+  }
+}
+
 M.mason = require 'configs.mason'
 
 return M
