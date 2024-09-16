@@ -14,6 +14,8 @@ local opts = {
 
     -- Go
     "gopls",
+    "goimports",
+    "golines",
   },
 }
 
