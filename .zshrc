@@ -137,7 +137,6 @@ alias pip='python -m pip'
 ## Alternative CLI tools
 alias vim='nvim'
 alias ls='lsd'
-alias grep='rg'
 alias top='htop'
 
 if [[ "$(uname)" == "Darwin" ]]; then
