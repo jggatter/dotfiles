@@ -9,4 +9,6 @@
 !.config/
 !.config/nvim/
 !.config/nvim/**
+!.config/tmux/
+!.config/tmux/**
 .config/nvim/**/.DS_Store
