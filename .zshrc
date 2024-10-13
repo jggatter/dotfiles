@@ -189,8 +189,7 @@ autoload -Uz compinit
 compinit -u
 
 # Fuzzy find
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-eval "$(fzf --zsh)"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh && eval "$(fzf --zsh)"
 
 # direnv
 eval "$(direnv hook zsh)"
