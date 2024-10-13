@@ -18,7 +18,12 @@ M.ui = {
   statusline = {
     -- theme = "minimal" -- Shows ruler
     theme = "vscode_colored"
-  }
+  },
+  tabufline = {
+    -- disable in favor of using tmux windows
+    enabled = false,
+  },
+  
 }
 
 M.mason = require 'configs.mason'
