@@ -110,7 +110,13 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+# tmux.conf location
+export TMUX_CONF="$HOME/.config/tmux/tmux.conf"
+
+# Editor
 export EDITOR='nvim'
+
+# Pager
 #export PAGER='less -s -M +Gg'
 export MANPAGER=$PAGER
 # Use Pygments to provide syntax highlighting for the less pager
@@ -154,7 +160,6 @@ alias status='aws --profile $EC2_PROFILE ec2 describe-instance-status --instance
 alias modify-type='aws --profile $EC2_PROFILE ec2 modify-instance-attribute --instance-id $EC2_ID --no-cli-pager --instance-type'
 alias describe-type='aws --profile $EC2_PROFILE ec2 describe-instance-attribute --instance-id $EC2_ID --attribute instanceType --no-cli-pager'
 alias yeet='scp -i $EC2_PEM ~/.aws/credentials "ubuntu@${EC2_IP}:~/.aws/credentials"'
-
 alias unassume='unset AWS_ACCESS_KEY_ID; unset AWS_SECRET_ACCESS_KEY; unset AWS_SESSION_TOKEN'
 
 # Utilities
@@ -176,6 +181,13 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
+# Deno
+export PATH="$PATH:$HOME/.deno/bin"
+# Deno completions
+fpath=(~/.zsh $fpath)
+autoload -Uz compinit
+compinit -u
+
 # Fuzzy find
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(fzf --zsh)"
@@ -185,3 +197,4 @@ eval "$(direnv hook zsh)"
 
 # Shell options
 bindkey -v
+
