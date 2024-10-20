@@ -181,6 +181,10 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
+# Shell options
+bindkey -v
+bindkey '^R' history-incremental-search-backward
+
 # Deno
 export PATH="$PATH:$HOME/.deno/bin"
 # Deno completions
@@ -189,11 +193,9 @@ autoload -Uz compinit
 compinit -u
 
 # Fuzzy find
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh && eval "$(fzf --zsh)"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh 
+eval "$(fzf --zsh)"
 
 # direnv
 eval "$(direnv hook zsh)"
-
-# Shell options
-bindkey -v
 
