@@ -8,10 +8,12 @@ local M = {}
 M.base46 = {
 	theme = "vscode_dark",
 
-	-- hl_override = {
-	-- 	Comment = { italic = true },
-	-- 	["@comment"] = { italic = true },
-	-- },
+	hl_override = {
+		Comment = { italic = false },
+		["@comment"] = { italic = false },
+		["@constant"] = { fg = "nord_blue" },
+		-- Type = {fg = "#4EC9B0"},
+	},
 }
 
 M.ui = {
@@ -23,7 +25,6 @@ M.ui = {
     -- disable in favor of using tmux windows
     enabled = false,
   },
-  
 }
 
 M.mason = require 'configs.mason'
