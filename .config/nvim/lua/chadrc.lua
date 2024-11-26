@@ -9,11 +9,21 @@ M.base46 = {
 	theme = "vscode_dark",
 
 	hl_override = {
-		Comment = { italic = false },
-		["@comment"] = { italic = false },
+		Boolean = { fg = "nord_blue" },
 		["@constant"] = { fg = "nord_blue" },
-		-- Type = {fg = "#4EC9B0"},
-	},
+		["@constant.builtin"] = { fg = "nord_blue" }, -- None
+    ["@property"] = { fg = "cyan" },
+    ["@variable.builtin"] = { fg = "cyan" },
+    ["@variable.member"] = { fg = "cyan" },
+    ["@variable.parameter"] = { fg = "cyan" },
+    ["@module"] = { fg = "#4EC9B0" },
+    ["@constructor"] = { fg = "#4EC9B0" }, -- Class invocation
+		Type = { fg = "#4EC9B0" }, -- Classes
+    ["@type.builtin"] = { fg = "#4EC9B0" }, -- str
+    Include = { fg = "#C586C0" }, -- from import
+    ["@keyword.repeat"] = { fg = "#C586C0" }, -- for
+    Special = { fg = "#C586C0" }, -- f-string braces
+	}
 }
 
 M.ui = {
