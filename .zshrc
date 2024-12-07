@@ -21,6 +21,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
+#ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -84,10 +85,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     aws
-    colored-man-pages
     docker
     gh
-    macos
     python
 )
 
@@ -117,10 +116,7 @@ export TMUX_CONF="$HOME/.config/tmux/tmux.conf"
 export EDITOR='nvim'
 
 # Pager
-#export PAGER='less -s -M +Gg'
-export MANPAGER=$PAGER
-# Use Pygments to provide syntax highlighting for the less pager
-#export LESSOPEN='|pygmentize -g %s'
+export BAT_THEME="Monokai Extended Light"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -144,6 +140,7 @@ alias pip='python -m pip'
 alias vim='nvim'
 alias ls='lsd'
 alias top='htop'
+alias man='function { man "$@" | col -bx | bat -l man --pager="less -R" --style="plain"; }'
 
 if [[ "$(uname)" == "Darwin" ]]; then
     alias sed='gsed'  # brew install gnu-sed
@@ -195,7 +192,8 @@ compinit -u
 # Fuzzy find
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh 
 eval "$(fzf --zsh)"
-
+# Fuzzy find with bat preview
+alias fzf='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
 # direnv
 eval "$(direnv hook zsh)"
 
