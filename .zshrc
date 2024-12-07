@@ -182,6 +182,10 @@ esac
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=100000
+
 # Deno
 export PATH="$PATH:$HOME/.deno/bin"
 # Deno completions
