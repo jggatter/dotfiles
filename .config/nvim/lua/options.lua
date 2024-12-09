@@ -16,8 +16,16 @@ vim.opt.relativenumber = true
 -- vim.opt.expandtab = true
 -- vim.opt.smartindent = true
 
--- No textwrap
-vim.opt.wrap = false
+-- Text wrapping
+vim.opt.wrap = false -- Generally do not text wrap
+
+vim.api.nvim_create_autocmd({"FileType"}, {
+    pattern = {"markdown", "rst"},
+    callback = function()
+        vim.wo.wrap = true  -- Enable line wrapping
+        vim.wo.linebreak = true  -- Break lines at word boundaries
+    end,
+})
 
 -- 
 vim.opt.swapfile = false

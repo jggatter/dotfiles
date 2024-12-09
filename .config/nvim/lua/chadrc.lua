@@ -6,14 +6,7 @@
 local M = {}
 
 M.base46 = {
-	theme = "vscode_dark",
-
-	hl_override = {
-		Comment = { italic = false },
-		["@comment"] = { italic = false },
-		["@constant"] = { fg = "nord_blue" },
-		-- Type = {fg = "#4EC9B0"},
-	},
+	theme = "vscode_dark_true", -- Custom theme
 }
 
 M.ui = {
