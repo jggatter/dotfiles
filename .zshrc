@@ -1,10 +1,35 @@
 # Path
+## User binaries for macOS or Linux
 if [[ "$(uname)" == "Darwin" ]]; then
-  export PATH="$PATH:/opt/homebrew/bin"
+  if [[ ":$PATH:" != *":/opt/homebrew/bin:"* ]]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+  fi
+
+  ## pnpm
+  export PNPM_HOME="/Users/jgatter/Library/pnpm"
 else
-  export PATH="$PATH:$HOME/.local/bin"
+  if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+    export PATH="$HOME/.local/bin:$PATH"
+  fi
+  
+  # TODO: export PNPM_HOME?
 fi
-export PATH="$PATH:$HOME/go/bin"
+
+## Go
+if [[ ":$PATH:" != *":$HOME/go/bin:"* ]]; then
+  export PATH="$HOME/go/bin:$PATH"
+fi
+
+## Deno
+if [[ ":$PATH:" != *":$HOME/.deno/bin:"* ]]; then
+  export PATH="$HOME/.deno/bin:$PATH"
+fi
+
+## pnpm
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -174,19 +199,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# pnpm
-export PNPM_HOME="/Users/jgatter/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
 # Shell options
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 
-# Deno
-export PATH="$PATH:$HOME/.deno/bin"
 # Deno completions
 fpath=(~/.zsh $fpath)
 autoload -Uz compinit
@@ -199,3 +215,8 @@ eval "$(fzf --zsh)"
 # direnv
 eval "$(direnv hook zsh)"
 
+eval "$(/Users/jgatter/.local/bin/mise activate zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
