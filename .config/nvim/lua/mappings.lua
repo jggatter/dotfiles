@@ -1,7 +1,9 @@
 require "nvchad.mappings"
 
--- add yours here
+-- NvChad for some reason wants to bind ^c to copy whole file
+vim.keymap.del("n", "<C-c>")
 
+-- Alternate command mode
 vim.keymap.set("n", ";", ":", {desc = "CMD Enter command mode"})
 
 -- Explorer (Disabled by Nvchad)
