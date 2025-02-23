@@ -16,6 +16,9 @@ local opts = {
     "gopls",
     "goimports",
     "golines",
+
+    -- Rust
+    "rust-analyzer",
   },
 }
 

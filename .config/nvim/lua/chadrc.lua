@@ -8,6 +8,21 @@ local M = {}
 M.base46 = {
 	theme = "vscode_dark_true", -- Custom theme
 }
+original_theme = M.base46.theme
+vim.api.nvim_create_autocmd({"FileType"}, {
+    pattern = {"*"},
+    callback = function()
+       require("nvconfig").base46.theme = original_theme
+       require("base46").load_all_highlights()
+    end,
+})
+vim.api.nvim_create_autocmd({"FileType"}, {
+    pattern = {"rust"},
+    callback = function()
+       require("nvconfig").base46.theme = 'gruvbox'
+       require("base46").load_all_highlights()
+    end,
+})
 
 M.ui = {
   statusline = {
