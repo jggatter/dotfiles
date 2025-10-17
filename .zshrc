@@ -1,3 +1,7 @@
+if [[ -f .zsh_work ]] then;
+  source ~/.zsh_work
+fi
+
 # Path
 ## User binaries for macOS or Linux
 if [[ "$(uname)" == "Darwin" ]]; then
@@ -210,3 +214,6 @@ eval "$(fzf --zsh)"
 alias fzf='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
 # direnv
 eval "$(direnv hook zsh)"
+
+source ~/.scripts/codeartifact.sh
+
