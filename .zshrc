@@ -23,6 +23,10 @@ fi
 ## Deno
 if [[ ":$PATH:" != *":$HOME/.deno/bin:"* ]]; then
   export PATH="$HOME/.deno/bin:$PATH"
+  # Add deno completions to search path
+  if [[ ":$FPATH:" != *":$HOME/.zsh/completions:"* ]]; then
+    export FPATH="$HOME/.zsh/completions:$FPATH";
+  fi
 fi
 
 ## pnpm
@@ -194,11 +198,10 @@ HISTSIZE=10000
 SAVEHIST=100000
 
 # Deno
-export PATH="$PATH:$HOME/.deno/bin"
-# Deno completions
 fpath=(~/.zsh $fpath)
 autoload -Uz compinit
 compinit -u
+[ -f $HOME/.deno/env ] && . "$HOME/.deno/env"
 
 # Fuzzy find
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh 
@@ -207,9 +210,3 @@ eval "$(fzf --zsh)"
 alias fzf='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
 # direnv
 eval "$(direnv hook zsh)"
-
-# eval "$(/Users/jgatter/.local/bin/mise activate zsh)"
-# export PYENV_ROOT="$HOME/.pyenv"
-# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
