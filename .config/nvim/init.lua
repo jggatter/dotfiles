@@ -32,6 +32,20 @@ dofile(vim.g.base46_cache .. "statusline")
 require "options"
 require "nvchad.autocmds"
 
+-- vscode workaround for neovim/neovim/issues/38651
+-- Disable enhanced terminal key encoding on VimEnter
+
+if vim.env.TERM_PROGRAM == "vscode" then
+  vim.api.nvim_create_autocmd("VimEnter", {
+    once = true,
+    callback = function()
+      vim.schedule(function()
+        vim.api.nvim_ui_send("\x1b[<u\x1b[>4;0m")
+      end)
+    end,
+  })
+end
+
 vim.schedule(function()
   require "mappings"
 end)
