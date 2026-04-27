@@ -1,17 +1,20 @@
 -- load defaults i.e lua_lsp
 require("nvchad.configs.lspconfig").defaults()
 
-local lspconfig = require "lspconfig"
-
-local servers = { "html", "cssls", "ts_ls" }
 local nvlsp = require "nvchad.configs.lspconfig"
+
+local servers = { "cssls", "html", "pyright", "svelte", "ts_ls" }
+
+local default_opts = {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+}
+
 -- lsps with default config
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = nvlsp.on_attach,
-    on_init = nvlsp.on_init,
-    capabilities = nvlsp.capabilities,
-  }
+  vim.lsp.config(lsp, default_opts)
+  vim.lsp.enable(lsp)
 end
 
 -- configuring single server, example: typescript
@@ -22,32 +25,17 @@ end
 -- }
 
 -- python
-lspconfig.ruff.setup {
+vim.lsp.config("ruff", {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
-}
+})
+vim.lsp.enable "ruff"
 
 -- go
-lspconfig.gopls.setup {
+vim.lsp.config("gopls", {
   on_attach = nvlsp.on_attach,
-  on_init = function(client, _)
-    -- Required for semanticTokens
-    -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
-    if client.name == "gopls" then
-      if not client.server_capabilities.semanticTokensProvider then
-        local semantic = client.config.capabilities.textDocument.semanticTokens
-        client.server_capabilities.semanticTokensProvider = {
-          full = true,
-          legend = {
-            tokenModifiers = semantic.tokenModifiers,
-            tokenTypes = semantic.tokenTypes
-          },
-          range = true,
-        }
-      end
-    end
-  end,
+  on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
   settings = {
     -- https://github.com/golang/tools/blob/master/gopls/doc/settings.md
@@ -69,4 +57,5 @@ lspconfig.gopls.setup {
       },
     }
   }
-}
+})
+vim.lsp.enable "gopls"
