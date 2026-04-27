@@ -208,10 +208,17 @@ compinit -u
 [ -f $HOME/.deno/env ] && . "$HOME/.deno/env"
 
 # Fuzzy find
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh 
-eval "$(fzf --zsh)"
-# Fuzzy find with bat preview
-alias fzf='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
+if [ -f ~/.fzf.zsh ]; then
+  # Source
+  source ~/.fzf.zsh
+
+  # Fuzzy find with bat preview
+  alias fzf='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
+
+  # Evaluate
+  eval "$(fzf --zsh)"
+fi
+
 # direnv
 eval "$(direnv hook zsh)"
 
