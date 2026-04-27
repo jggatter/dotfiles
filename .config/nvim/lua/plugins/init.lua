@@ -1,10 +1,9 @@
 return {
   -- Improved formatting. This and nvim-lint are alternative to none-ls
-  -- {
-  --   "stevearc/conform.nvim",
-  --   -- event = 'BufWritePre', -- uncomment for format on save
-  --   opts = require "configs.conform",
-  -- },
+  {
+    "stevearc/conform.nvim",
+    opts = require "configs.conform",
+  },
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -14,7 +13,19 @@ return {
   -- Integration of tree-sitter parsing tool for highlighting
   {
     "nvim-treesitter/nvim-treesitter",
+    config = function(_, opts)
+      local plugin = require("lazy.core.config").plugins["nvim-treesitter"]
+
+      if plugin and plugin.dir then
+        vim.opt.rtp:append(plugin.dir .. "/runtime")
+      end
+
+      require("nvim-treesitter").setup(opts)
+    end,
     opts = {
+      highlight = {
+        enable = true,
+      },
       ensure_installed = {
         "vim", "lua", "vimdoc",
         "html", "css", "javascript",
@@ -24,14 +35,6 @@ return {
         "dockerfile", "dot", "sql"
       },
     },
-  },
-  -- none-ls fka null-ls integrates LSP-related sources
-  {
-    "nvimtools/none-ls.nvim",
-    ft = { "python", "go" },
-    opts = function()
-      return require "configs.none_ls"
-    end,
   },
   -- Mason installs external dependencies to Neovim
   {
