@@ -6,9 +6,12 @@ local opts = {
     "stylua",
 
     -- Web Development
-    "html-lsp", "css-lsp" , "prettier",
+    "html-lsp", "css-lsp", "prettier",
+    "typescript-language-server",
+    "svelte-language-server",
 
     -- Python
+    "pyright",
     "ruff",
     "mypy",
 
