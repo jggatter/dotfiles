@@ -44,6 +44,11 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
+# yabridge
+if [ -f $HOME/.local/share/yabridgectl/yabridgectl ]; then
+  export PATH="$PATH:$HOME/.local/share/yabridgectl"
+fi
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -226,6 +231,4 @@ fi
 
 # direnv
 eval "$(direnv hook zsh)"
-
-source ~/.scripts/codeartifact.sh
 
