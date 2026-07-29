@@ -20,6 +20,11 @@ else
 fi
 
 ## Go
+# Go installation
+if [[ ":$PATH:" != *":/usr/local/go/bin:"* ]]; then
+  export PATH="/usr/local/go/bin:$PATH"
+fi
+# Installed packages
 if [[ ":$PATH:" != *":$HOME/go/bin:"* ]]; then
   export PATH="$HOME/go/bin:$PATH"
 fi
