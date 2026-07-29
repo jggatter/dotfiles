@@ -32,7 +32,8 @@ return {
         "typescript", "svelte",
         "python", "go", "rust",
         "toml", "yaml", "json", "xml",
-        "dockerfile", "dot", "sql"
+        "dockerfile", "dot", "sql",
+        "c", "cpp", "cmake", "make",
       },
     },
   },
