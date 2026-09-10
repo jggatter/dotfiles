@@ -185,7 +185,7 @@ fi
 
 ## AWS CLI
 # Variables are stored in .zshenv
-alias gimme='gimme-aws-creds --open-browser'
+alias gimme='aws sso login'
 alias connect='ssh -i $EC2_PEM ubuntu@$EC2_IP'
 alias stop='aws --profile $EC2_PROFILE ec2 stop-instances --instance-ids $EC2_ID --no-cli-pager'
 alias start='aws --profile $EC2_PROFILE ec2 start-instances --instance-ids $EC2_ID --no-cli-pager'
