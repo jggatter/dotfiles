@@ -82,3 +82,4 @@ vim.keymap.set(
   function() vim.cmd("so") end,
   {desc = "Source the current file"}
 )
+
