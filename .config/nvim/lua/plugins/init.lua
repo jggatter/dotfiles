@@ -1,4 +1,15 @@
 return {
+  {
+    "Mofiqul/vscode.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("vscode").setup {
+        style = "dark",
+      }
+      vim.cmd.colorscheme "vscode"
+    end,
+  },
   -- Improved formatting. This and nvim-lint are alternative to none-ls
   {
     "stevearc/conform.nvim",
