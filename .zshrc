@@ -10,13 +10,14 @@ if [[ "$(uname)" == "Darwin" ]]; then
   fi
 
   ## pnpm
-  export PNPM_HOME="/Users/jgatter/Library/pnpm"
+  PNPM_HOME="/Users/jgatter/Library/pnpm"
 else
   if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
     export PATH="$HOME/.local/bin:$PATH"
   fi
   
-  # TODO: export PNPM_HOME?
+  ## TODO: pnpm on Linux?
+  # PNPM_HOME=""
 fi
 
 ## Go
@@ -39,10 +40,14 @@ if [[ ":$PATH:" != *":$HOME/.deno/bin:"* ]]; then
 fi
 
 ## pnpm
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
+if [[ -n $PNPM_HOME && -d $PNPM_HOME ]]; then
+  export PNPM_HOME
+
+  case ":$PATH:" in
+    *":$PNPM_HOME:"*) ;;
+    *) export PATH="$PNPM_HOME:$PATH" ;;
+  esac
+fi
 
 # yabridge
 if [ -f $HOME/.local/share/yabridgectl/yabridgectl ]; then
