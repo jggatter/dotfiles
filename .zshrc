@@ -1,5 +1,5 @@
 if [[ -f .zsh_work ]] then;
-  source ~/.zsh_work
+  source $HOME/.zsh_work
 fi
 
 # Path
@@ -165,8 +165,8 @@ export BAT_THEME="Monokai Extended Light"
 # For a full list of active aliases, run `alias`.
 #
 # Shell
-alias zshrc="$EDITOR ~/.zshrc"
-alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
+alias zshrc="$EDITOR $HOME/.zshrc"
+alias ohmyzsh="$EDITOR $HOME/.oh-my-zsh"
 alias aliases="alias | $PAGER"
 alias als='aliases'
 alias git-df='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
@@ -212,20 +212,20 @@ export NVM_DIR="$HOME/.nvm"
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 
-HISTFILE=~/.zsh_history
+HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000
 SAVEHIST=100000
 
 # Deno
-fpath=(~/.zsh $fpath)
+fpath=($HOME/.zsh $fpath)
 autoload -Uz compinit
 compinit -u
 [ -f $HOME/.deno/env ] && . "$HOME/.deno/env"
 
 # Fuzzy find
-if [ -f ~/.fzf.zsh ]; then
+if [ -f $HOME/.fzf.zsh ]; then
   # Source
-  source ~/.fzf.zsh
+  source $HOME/.fzf.zsh
 
   # Fuzzy find with bat preview
   alias fzf='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'

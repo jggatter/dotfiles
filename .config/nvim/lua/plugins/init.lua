@@ -38,15 +38,16 @@ return {
         enable = true,
       },
       ensure_installed = {
-        "vim", "lua", "vimdoc",
+        "vim", "lua", "vimdoc", "markdown",
         "html", "css", "javascript",
         "typescript", "svelte",
         "python", "go", "rust",
         "toml", "yaml", "json", "xml",
-        "dockerfile", "dot", "sql",
+        "dockerfile", "sql",
         "c", "cpp", "cmake", "make",
       },
     },
+    build = ':TSUpdate'
   },
   -- Mason installs external dependencies to Neovim
   {
