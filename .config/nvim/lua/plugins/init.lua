@@ -13,6 +13,7 @@ return {
   -- Improved formatting. This and nvim-lint are alternative to none-ls
   {
     "stevearc/conform.nvim",
+    event = "BufWritePre",
     opts = require "configs.conform",
   },
   {
@@ -52,6 +53,13 @@ return {
   -- Mason installs external dependencies to Neovim
   {
   	"williamboman/mason.nvim",
+  },
+  {
+    "mfussenegger/nvim-lint",
+    event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      require "configs.lint"
+    end,
   },
   {
     "kylechui/nvim-surround",

@@ -3,7 +3,7 @@ require("nvchad.configs.lspconfig").defaults()
 
 local nvlsp = require "nvchad.configs.lspconfig"
 
-local servers = { "cssls", "html", "pyright", "svelte", "ts_ls" }
+local servers = { "cssls", "html", "pyright", "svelte", "ts_ls", "clangd" }
 
 local default_opts = {
   on_attach = nvlsp.on_attach,
@@ -40,13 +40,13 @@ vim.lsp.config("gopls", {
   settings = {
     -- https://github.com/golang/tools/blob/master/gopls/doc/settings.md
     gopls = {
-      semanticTokens = true,  -- experimental
+      semanticTokens = true, -- experimental
       usePlaceholders = true,
       analyses = {
         unusedvariable = true,
       },
-      staticcheck = true,  -- experimental
-      hints = {  --experimental
+      staticcheck = true, -- experimental
+      hints = { --experimental
         assignVariableTypes = true,
         compositeLiteralFields = true,
         compositeLiteralTypes = true,
@@ -55,8 +55,11 @@ vim.lsp.config("gopls", {
         parameterNames = true,
         rangeVariableTypes = true,
       },
-    }
-  }
+    },
+  },
 })
 vim.lsp.enable "gopls"
 
+vim.lsp.config("clangd", {
+  cmd = { "clangd", "--background-index", "--header-insertion=never" },
+})

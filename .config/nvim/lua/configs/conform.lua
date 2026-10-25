@@ -1,5 +1,7 @@
 local options = {
   formatters_by_ft = {
+    c = { "clang-format" },
+    cpp = { "clang-format" },
     lua = { "stylua" },
     css = { "prettier" },
     go = { "goimports", "gofmt" },
@@ -15,9 +17,8 @@ local options = {
 
   format_on_save = {
     timeout_ms = 1000,
-    lsp_fallback = true,
+    lsp_format = "fallback",
   },
 }
 
 return options
-

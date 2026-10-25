@@ -29,6 +29,7 @@ require("lazy").setup({
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
+-- load user options and nvchad auto commands
 require "options"
 require "nvchad.autocmds"
 

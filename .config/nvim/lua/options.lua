@@ -44,6 +44,18 @@ vim.opt.relativenumber = true
 -- vim.opt.expandtab = true
 -- vim.opt.smartindent = true
 
+-- Languages
+vim.g.c_syntax_for_h = 1
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "c", "cpp", "go" },
+  callback = function()
+    vim.opt_local.expandtab = false
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 0
+    vim.opt_local.softtabstop = 0
+  end,
+})
+
 -- Text wrapping
 vim.opt.wrap = false -- Generally do not text wrap
 

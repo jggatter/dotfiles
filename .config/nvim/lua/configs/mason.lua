@@ -22,6 +22,10 @@ local opts = {
 
     -- Rust
     "rust-analyzer",
+
+    -- C
+    "clang-format",
+    "clangd",
   },
 }
 
